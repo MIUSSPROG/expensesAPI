@@ -6,7 +6,8 @@ from rest_framework import generics
 from dailyExpenses.models import Parent, Child, Category, Plan, Role
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
-    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer
+    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer, \
+    RoleListSerializer
 
 
 class RoleListView(generics.ListAPIView):
