@@ -1,15 +1,21 @@
 from django.db import models
 
 
+class Role(models.Model):
+    name = models.CharField(max_length=10)
+
+
 class Parent(models.Model):
     login = models.CharField(max_length=30)
     password = models.CharField(max_length=500)
+    role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
 class Child(models.Model):
     login = models.CharField(max_length=30)
     password = models.CharField(max_length=500, default="")
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children")
+    role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
 class Category(models.Model):

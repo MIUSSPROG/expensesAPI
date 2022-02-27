@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from dailyExpenses.models import Parent, Child, Plan, Category
+from dailyExpenses.models import Parent, Child, Plan, Category, Role
+
+
+class RoleCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
 
 
 class ParentCreateSerializer(serializers.ModelSerializer):

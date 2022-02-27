@@ -6,7 +6,11 @@ from rest_framework import generics
 from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
-    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer
+    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer
+
+
+class RoleCreateView(generics.CreateAPIView):
+    serializer_class = RoleCreateSerializer
 
 
 class ParentCreateView(generics.CreateAPIView):

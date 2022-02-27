@@ -11,5 +11,6 @@ urlpatterns = [
     path('plan/children/<int:pk>', views.PlanChildrenDetailView.as_view()),
     path('plan/<int:pk>/confirm', views.PlanConfirmView.as_view()),
     path('category', views.CategoryCreateView.as_view()),
-    path('categories', views.CategoryListView.as_view())
+    path('categories', views.CategoryListView.as_view()),
+    path('role', views.RoleCreateView.as_view())
 ]
