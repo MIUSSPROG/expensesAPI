@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'dailyExpenses',
-    'django.contrib.staticfiles',
     'drf_yasg'
 ]
 
