@@ -8,6 +8,7 @@ class Parent(models.Model):
 
 class Child(models.Model):
     login = models.CharField(max_length=30)
+    password = models.CharField(max_length=500, default="")
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children")
 
 
