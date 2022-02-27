@@ -3,10 +3,15 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import generics
 
-from dailyExpenses.models import Parent, Child, Category, Plan
+from dailyExpenses.models import Parent, Child, Category, Plan, Role
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer
+
+
+class RoleListView(generics.ListAPIView):
+    serializer_class = RoleListSerializer
+    queryset = Role.objects.all()
 
 
 class RoleCreateView(generics.CreateAPIView):

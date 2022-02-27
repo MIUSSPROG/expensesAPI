@@ -21,6 +21,12 @@ class ParentListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class RoleListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = "__all__"
+
+
 class ChildCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
