@@ -47,7 +47,7 @@ class ChildListCreateView(ListCreateAPIView):
 class ChildDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Child.objects.all()
     serializer_class = ChildAuthSerializer
-    permission_classes = [IsOwnerProfileOrReadOnly, IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
 
 class ChildCreateView(generics.CreateAPIView):
