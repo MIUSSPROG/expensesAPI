@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -6,14 +7,16 @@ class Role(models.Model):
 
 
 class Parent(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="child")
     login = models.CharField(max_length=30)
     password = models.CharField(max_length=500)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
 class Child(models.Model):
-    login = models.CharField(max_length=30)
-    password = models.CharField(max_length=500, default="")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="child")
+    # login = models.CharField(max_length=30)
+    # password = models.CharField(max_length=500, default="")
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children")
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
