@@ -6,5 +6,4 @@ class DailyexpensesConfig(AppConfig):
     name = 'dailyExpenses'
 
     def ready(self):
-        pass
-        # import dailyExpenses.signal
+        import dailyExpenses.signal
