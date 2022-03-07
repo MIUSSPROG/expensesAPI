@@ -10,7 +10,7 @@ from dailyExpenses.models import Parent, Child, Category, Plan, Role
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer, \
-    RoleListSerializer, ChildAuthSerializer
+    RoleListSerializer
 
 
 # class RoleView(generics)
@@ -34,20 +34,20 @@ class ParentListView(generics.ListAPIView):
     queryset = Parent.objects.all()
 
 
-class ChildListCreateView(ListCreateAPIView):
-    serializer_class = ChildAuthSerializer
-    queryset = Child.objects.all()
-    permission_classes = [IsAuthenticated]
+# class ChildListCreateView(ListCreateAPIView):
+#     serializer_class = ChildAuthSerializer
+#     queryset = Child.objects.all()
+#     permission_classes = [IsAuthenticated]
+#
+#     def perform_create(self, serializer):
+#         user = self.request.user
+#         serializer.save(user=user)
 
-    def perform_create(self, serializer):
-        user = self.request.user
-        serializer.save(user=user)
 
-
-class ChildDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Child.objects.all()
-    serializer_class = ChildAuthSerializer
-    permission_classes = [IsAuthenticated]
+# class ChildDetailView(RetrieveUpdateDestroyAPIView):
+#     queryset = Child.objects.all()
+#     serializer_class = ChildAuthSerializer
+#     permission_classes = [IsAuthenticated]
 
 
 class ChildCreateView(generics.CreateAPIView):
