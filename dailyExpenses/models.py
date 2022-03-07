@@ -15,9 +15,9 @@ class Parent(models.Model):
 
 class Child(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="child")
-    login = models.CharField(max_length=30)
+    login = models.CharField(max_length=30, default=None)
     password = models.CharField(max_length=500, default="")
-    parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children")
+    parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children", default=None)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
