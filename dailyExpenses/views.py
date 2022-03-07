@@ -6,23 +6,22 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import IsAuthenticated
 
 from dailyExpenses.license import IsOwnerProfileOrReadOnly
-from dailyExpenses.models import Parent, Child, Category, Plan, Role
+from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
-    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, RoleCreateSerializer, \
-    RoleListSerializer
+    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer
 
 
 # class RoleView(generics)
 
 
-class RoleListView(generics.ListAPIView):
-    serializer_class = RoleListSerializer
-    queryset = Role.objects.all()
-
-
-class RoleCreateView(generics.CreateAPIView):
-    serializer_class = RoleCreateSerializer
+# class RoleListView(generics.ListAPIView):
+#     serializer_class = RoleListSerializer
+#     queryset = Role.objects.all()
+#
+#
+# class RoleCreateView(generics.CreateAPIView):
+#     serializer_class = RoleCreateSerializer
 
 
 class ParentCreateView(generics.CreateAPIView):

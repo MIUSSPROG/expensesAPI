@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from dailyExpenses.models import Parent, Child, Plan, Category, Role
+from dailyExpenses.models import Parent, Child, Plan, Category
 
 
-class RoleCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Role
-        fields = '__all__'
+# class RoleCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Role
+#         fields = '__all__'
 
 
 class ParentCreateSerializer(serializers.ModelSerializer):
@@ -21,10 +21,10 @@ class ParentListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RoleListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Role
-        fields = "__all__"
+# class RoleListSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Role
+#         fields = "__all__"
 
 
 class ChildCreateSerializer(serializers.ModelSerializer):
