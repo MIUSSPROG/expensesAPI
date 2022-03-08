@@ -8,6 +8,7 @@ urlpatterns = [
     path("parent", views.ParentCreateView.as_view()),
     path("parents", views.ParentListView.as_view()),
     path("child", views.ChildCreateView.as_view()),
+    path("child/<int:pk>/check", views.ChildCheckView.as_view()),
     path("children", views.ChildListView.as_view()),
     path("parent/<int:pk>/children", views.ChildrenDetailView.as_view()),
     path('plan', views.PlanCreateView.as_view()),

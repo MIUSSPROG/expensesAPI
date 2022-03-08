@@ -9,7 +9,7 @@ from dailyExpenses.license import IsOwnerProfileOrReadOnly
 from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
-    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer
+    CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer
 
 
 # class RoleView(generics)
@@ -61,6 +61,11 @@ class ChildListView(generics.ListAPIView):
 class ChildrenDetailView(generics.RetrieveAPIView):
     serializer_class = ChildrenDetailSerializer
     queryset = Parent.objects.all()
+
+
+class ChildCheckView(generics.RetrieveAPIView):
+    serializer_class = ChildCheckDetailSerializer
+    queryset = Child.objects.all()
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):
