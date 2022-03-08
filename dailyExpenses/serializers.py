@@ -33,12 +33,10 @@ class ChildCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class ChildAuthSerializer(serializers.ModelSerializer):
-#     user = serializers.StringRelatedField(read_only=True)
-#
-#     class Meta:
-#         model = Child
-#         fields = '__all__'
+class ChildAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Child
+        fields = '__all__'
 
 
 class ChildListSerializer(serializers.ModelSerializer):

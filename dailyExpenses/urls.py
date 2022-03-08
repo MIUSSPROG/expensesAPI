@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     # auth
     # path("child", views.ChildListCreateView.as_view()),
-    # path('child/<int:pk>', views.ChildDetailView.as_view()),
+    path('child_encoded/<int:pk>', views.ChildDetailView.as_view()),
     path("parent", views.ParentCreateView.as_view()),
     path("parents", views.ParentListView.as_view()),
     path("child", views.ChildCreateView.as_view()),
