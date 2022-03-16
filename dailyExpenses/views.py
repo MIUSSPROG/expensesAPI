@@ -11,7 +11,7 @@ from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
-    ChildAuthSerializer, CheckChildSerializer
+    ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer
 
 
 # class RoleView(generics)
@@ -67,6 +67,10 @@ class ChildrenDetailView(generics.RetrieveAPIView):
 class ChildCheckView(generics.RetrieveAPIView):
     serializer_class = ChildCheckDetailSerializer
     queryset = Child.objects.all()
+
+
+class SaveChildEncodedView(generics.CreateAPIView):
+    serializer_class = SaveChildEncodedSerializer
 
 
 class CheckChildView(generics.ListAPIView):
