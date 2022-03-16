@@ -81,6 +81,10 @@ class CheckChildView(generics.ListAPIView):
             if child is not None:
                 serializer = CheckChildSerializer(child)
                 return Response(serializer.data)
+            else:
+                return Response({"Error": "Child not found"})
+        else:
+            return Response({"Error": "credentials fail"})
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):
