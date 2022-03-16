@@ -82,7 +82,7 @@ class CheckChildView(generics.ListAPIView):
                 serializer = CheckChildSerializer(child)
                 return Response(serializer.data)
             else:
-                return Response({"Error": "Child not found"})
+                return Response(Child.objects.none())
         else:
             return Response({"Error": "credentials fail"})
 
