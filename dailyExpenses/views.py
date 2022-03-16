@@ -4,13 +4,14 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from dailyExpenses.license import IsOwnerProfileOrReadOnly
 from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
-    ChildAuthSerializer
+    ChildAuthSerializer, CheckChildSerializer
 
 
 # class RoleView(generics)
@@ -66,6 +67,20 @@ class ChildrenDetailView(generics.RetrieveAPIView):
 class ChildCheckView(generics.RetrieveAPIView):
     serializer_class = ChildCheckDetailSerializer
     queryset = Child.objects.all()
+
+
+class CheckChildView(generics.ListAPIView):
+    serializer_class = CheckChildSerializer
+    queryset = Child.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        login = request.query_params["login"]
+        password = request.query_params["password"]
+        if login is not None and password is not None:
+            child = Child.objects.get(login=login, password=password)
+            if child is not None:
+                serializer = CheckChildSerializer(child)
+                return Response(serializer.data)
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):

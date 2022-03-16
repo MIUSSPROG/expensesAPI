@@ -65,6 +65,12 @@ class ChildCheckDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class CheckChildSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Child
+        fields = "__all__"
+
+
 class PlanChildrenDetailSerializer(serializers.ModelSerializer):
     plans = PlanCreateSerializer(many=True)
 
