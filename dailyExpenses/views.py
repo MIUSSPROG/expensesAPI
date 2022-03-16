@@ -74,17 +74,16 @@ class CheckChildView(generics.ListAPIView):
     queryset = Child.objects.all()
 
     def get(self, request, *args, **kwargs):
-        login = request.query_params["login"]
-        password = request.query_params["password"]
-        if login is not None and password is not None:
-            child = Child.objects.get(login=login, password=password)
-            if child is not None:
-                serializer = CheckChildSerializer(child)
-                return Response(serializer.data)
-            else:
-                return Response(Child.objects.none())
-        else:
-            return Response({"Error": "credentials fail"})
+        try:
+            login = request.query_params["login"]
+            password = request.query_params["password"]
+            if login is not None and password is not None:
+                child = Child.objects.get(login=login, password=password)
+                if child is not None:
+                    serializer = CheckChildSerializer(child)
+                    return Response(serializer.data)
+        except Exception as ex:
+            return Response(Child.objects.none())
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):
