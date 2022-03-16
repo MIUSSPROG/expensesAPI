@@ -81,6 +81,7 @@ class CheckChildView(generics.ListAPIView):
         try:
             login = request.query_params["login"]
             password = request.query_params["password"]
+            print(password)
             if login is not None and password is not None:
                 child = Child.objects.get(login=login, password=password)
                 if child is not None:
