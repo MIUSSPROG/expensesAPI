@@ -11,7 +11,8 @@ from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
-    ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer
+    ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
+    CheckParentSerializer
 
 
 # class RoleView(generics)
@@ -75,6 +76,24 @@ class SaveParentEncodedView(generics.CreateAPIView):
 
 class SaveChildEncodedView(generics.CreateAPIView):
     serializer_class = SaveChildEncodedSerializer
+
+
+class CheckParentView(generics.ListAPIView):
+    serializer_class = CheckParentSerializer
+    queryset = Parent.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        try:
+            login = request.query_params["login"]
+            password = request.query_params["password"]
+            print(password)
+            if login is not None and password is not None:
+                parent = Parent.objects.get(login=login, password=password)
+                if parent is not None:
+                    serializer = CheckParentSerializer(parent)
+                    return Response(serializer.data)
+        except Exception as ex:
+            return Response(Parent.objects.none())
 
 
 class CheckChildView(generics.ListAPIView):

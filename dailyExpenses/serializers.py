@@ -96,6 +96,12 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         return child
 
 
+class CheckParentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parent
+        fields = "__all__"
+
+
 class CheckChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
