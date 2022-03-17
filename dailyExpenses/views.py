@@ -92,7 +92,7 @@ class CheckParentView(generics.ListAPIView):
                 if parent is not None:
                     serializer = CheckParentSerializer(parent)
                     return Response(serializer.data)
-        except Exception:
+        except Exception as ex:
             return Response(Parent.objects.none())
 
 
@@ -110,7 +110,7 @@ class CheckChildView(generics.ListAPIView):
                 if child is not None:
                     serializer = CheckChildSerializer(child)
                     return Response(serializer.data)
-        except Exception:
+        except Exception as ex:
             return Response(Child.objects.none())
 
 
