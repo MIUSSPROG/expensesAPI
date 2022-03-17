@@ -66,6 +66,21 @@ class ChildCheckDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class SaveParentEncodedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parent
+        fields = ('login', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        parent = Parent(
+            login=validated_data['login'],
+            password=make_password(validated_data['password'])
+        )
+        parent.save()
+        return parent
+
+
 class SaveChildEncodedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
