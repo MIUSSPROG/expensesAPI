@@ -111,7 +111,7 @@ class CheckChildView(generics.ListAPIView):
                     serializer = CheckChildSerializer(child)
                     return Response(serializer.data)
         except Exception as ex:
-            return Response(Child.objects.none())
+            return Response(Child.objects.get().none())
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):
