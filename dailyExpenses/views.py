@@ -86,14 +86,13 @@ class CheckParentView(generics.ListAPIView):
         try:
             login = request.query_params["login"]
             password = request.query_params["password"]
-            print(password)
             if login is not None and password is not None:
                 parent = Parent.objects.get(login=login, password=password)
                 if parent is not None:
                     serializer = CheckParentSerializer(parent)
                     return Response(serializer.data)
         except Exception:
-            return Response(Parent.objects.none())
+            return Response({'id': 0, 'login': "", 'password': "", 'parent': None}, status=status.HTTP_404_NOT_FOUND)
 
 
 class CheckChildView(generics.ListAPIView):
@@ -104,7 +103,6 @@ class CheckChildView(generics.ListAPIView):
         try:
             login = request.query_params["login"]
             password = request.query_params["password"]
-            print(password)
             if login is not None and password is not None:
                 child = Child.objects.get(login=login, password=password)
                 if child is not None:

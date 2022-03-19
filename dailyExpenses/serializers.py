@@ -75,9 +75,11 @@ class SaveParentEncodedSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        encoded_pass = hashlib.sha256(str(validated_data['password']).encode())
+        pass_to_send = encoded_pass.hexdigest()
         parent = Parent(
             login=validated_data['login'],
-            password=make_password(validated_data['password'], hasher='pbkdf2_sha256')
+            password=pass_to_send
         )
         parent.save()
         return parent
