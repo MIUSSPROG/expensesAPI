@@ -43,10 +43,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt'
 ]
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher'
-    'django.contrib.auth.hashers.BCryptPasswordHasher'
-]
+# PASSWORD_HASHERS = [
+#     'django.contrib.auth.hashers.BCryptPasswordHasher'
+# ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
