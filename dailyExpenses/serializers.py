@@ -75,7 +75,7 @@ class SaveParentEncodedSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         parent = Parent(
             login=validated_data['login'],
-            password=make_password(validated_data['password'])
+            password=make_password(validated_data['password'], hasher='pbkdf2_sha256')
         )
         parent.save()
         return parent
