@@ -1,4 +1,4 @@
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, PBKDF2PasswordHasher
 from rest_framework import serializers
 
 from dailyExpenses.models import Parent, Child, Plan, Category
@@ -88,9 +88,11 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        hasher = PBKDF2PasswordHasher()
+        # password = make_password(validated_data['password'], hasher='pbkdf2_sha256', salt='4WSAQIdeZBGWWpovpH9uZ9')
         child = Child(
             login=validated_data['login'],
-            password=make_password(validated_data['password'], hasher='pbkdf2_sha256', salt='4WSAQIdeZBGWWpovpH9uZ9')
+            password=hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=1)
         )
         child.save()
         return child
