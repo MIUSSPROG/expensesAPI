@@ -93,9 +93,11 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         # hasher = PBKDF2PasswordHasher()
         # password = make_password(validated_data['password'], hasher='pbkdf2_sha256', salt='4WSAQIdeZBGWWpovpH9uZ9')
         # password = hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=0)
+        encoded_pass = hashlib.sha256(str(validated_data['password']).encode())
+        pass_to_send = encoded_pass.hexdigest()
         child = Child(
             login=validated_data['login'],
-            password=hashlib.sha256(validated_data['password'])
+            password=pass_to_send
         )
         child.save()
         return child
