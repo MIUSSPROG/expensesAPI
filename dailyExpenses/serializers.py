@@ -1,3 +1,5 @@
+import hashlib
+
 from django.contrib.auth.hashers import make_password, PBKDF2PasswordHasher
 from rest_framework import serializers
 
@@ -88,11 +90,12 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        hasher = PBKDF2PasswordHasher()
+        # hasher = PBKDF2PasswordHasher()
         # password = make_password(validated_data['password'], hasher='pbkdf2_sha256', salt='4WSAQIdeZBGWWpovpH9uZ9')
+        # password = hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=0)
         child = Child(
             login=validated_data['login'],
-            password=hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=0)
+            password=hashlib.sha256(str(validated_data['password']).encode())
         )
         child.save()
         return child
