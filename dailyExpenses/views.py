@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -111,7 +111,8 @@ class CheckChildView(generics.ListAPIView):
                     serializer = CheckChildSerializer(child)
                     return Response(serializer.data)
         except Exception as ex:
-            return Response(Child.objects.get().none())
+            return Response({'status': 'details'}, status=status.HTTP_404_NOT_FOUND)
+            # return Response(Child.objects.none())
 
 
 class PlanChildrenDetailView(generics.RetrieveAPIView):
