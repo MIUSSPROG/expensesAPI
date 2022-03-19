@@ -111,7 +111,7 @@ class CheckChildView(generics.ListAPIView):
                     serializer = CheckChildSerializer(child)
                     return Response(serializer.data)
         except Exception as ex:
-            return Response({'status': 'details'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'status': 'not found'}, status=status.HTTP_404_NOT_FOUND)
             # return Response(Child.objects.none())
 
 
