@@ -92,7 +92,7 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         # password = make_password(validated_data['password'], hasher='pbkdf2_sha256', salt='4WSAQIdeZBGWWpovpH9uZ9')
         child = Child(
             login=validated_data['login'],
-            password=hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=1)
+            password=hasher.encode(password=validated_data['password'], salt='4WSAQIdeZBGWWpovpH9uZ9', iterations=0)
         )
         child.save()
         return child
