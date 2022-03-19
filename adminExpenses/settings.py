@@ -44,8 +44,6 @@ INSTALLED_APPS = [
 ]
 
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'accounts.hashers.PBKDF2WrappedSHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher'
 ]
 
