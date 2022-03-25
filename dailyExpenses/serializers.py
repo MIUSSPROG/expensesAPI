@@ -3,7 +3,7 @@ import hashlib
 from django.contrib.auth.hashers import make_password, PBKDF2PasswordHasher
 from rest_framework import serializers
 
-from dailyExpenses.models import Parent, Child, Plan, Category
+from dailyExpenses.models import Parent, Child, Plan, Category, Invitation
 
 
 # class RoleCreateSerializer(serializers.ModelSerializer):
@@ -105,6 +105,12 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         return child
 
 
+class SendInvitationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invitation
+        fields = "__all__"
+
+
 class CheckParentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parent
@@ -141,3 +147,6 @@ class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = "__all__"
+
+
+
