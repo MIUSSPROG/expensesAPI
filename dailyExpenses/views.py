@@ -138,28 +138,3 @@ class CategoryListView(generics.ListAPIView):
 
 class SendInvitationCreateView(generics.CreateAPIView):
     serializer_class = SendInvitationSerializer
-
-    # def post(self, request, *args, **kwargs):
-        # child_login = request.data["child_login"]
-        # parent_login = request.data["parent_login"]
-        # child = Child.objects.get(login=child_login)
-        # child_id = child.pk
-        # parent = Parent.objects.get(login=parent_login)
-        # parent_id = parent.pk
-        # return self.create(request, *args, **kwargs)
-
-    def get_serializer(self, *args, **kwargs):
-        serializer_class = self.get_serializer_class()
-        kwargs["context"] = self.get_serializer_class()
-        draft_request_data = self.request.data.copy()
-
-        child_login = self.request.data["child_login"]
-        parent_login = self.request.data["parent_login"]
-        child = Child.objects.get(login=child_login)
-        child_id = child.pk
-        parent = Parent.objects.get(login=parent_login)
-        parent_id = parent.pk
-        draft_request_data["child_login"] = child_id
-        draft_request_data["parent_login"] = parent_id
-        kwargs["data"] = draft_request_data
-        return serializer_class(*args, **kwargs)
