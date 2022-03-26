@@ -149,4 +149,12 @@ class CategoryListSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ChildrenByParentIdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invitation
+        fields = ('child_id', 'child_login', 'confirm')
 
+    child_login = serializers.SerializerMethodField('get_child_login')
+
+    def get_child_login(self, obj):
+        return obj.child.login

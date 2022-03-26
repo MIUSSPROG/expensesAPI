@@ -23,7 +23,7 @@ class Child(models.Model):
 
 
 class Invitation(models.Model):
-    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    child = models.ForeignKey(Child, on_delete=models.CASCADE, related_name='child_invitations')
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
     confirm = models.BooleanField(default=False)
 

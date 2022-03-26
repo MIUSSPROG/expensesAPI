@@ -7,12 +7,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from dailyExpenses.license import IsOwnerProfileOrReadOnly
-from dailyExpenses.models import Parent, Child, Category, Plan
+from dailyExpenses.models import Parent, Child, Category, Plan, Invitation
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
-    CheckParentSerializer, SendInvitationSerializer
+    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer
 
 
 # class RoleView(generics)
@@ -138,3 +138,17 @@ class CategoryListView(generics.ListAPIView):
 
 class SendInvitationCreateView(generics.CreateAPIView):
     serializer_class = SendInvitationSerializer
+
+
+class ChildrenByParentId(generics.ListAPIView):
+    serializer_class = ChildrenByParentIdSerializer
+    queryset = Child.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        parentId = request.query_params["parentId"]
+        if parentId is not None:
+            children_invitations = Invitation.objects.filter(parent=parentId)
+            serializer = ChildrenByParentIdSerializer(children_invitations, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({'error': 'userId not found'})
