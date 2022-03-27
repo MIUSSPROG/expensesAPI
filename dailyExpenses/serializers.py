@@ -169,4 +169,4 @@ class ConfirmInvitationSerializer(serializers.ModelSerializer):
 class GetInvitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invitation
-        fields = 'id'
+        fields = ('id')
