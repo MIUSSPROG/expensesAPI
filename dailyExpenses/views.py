@@ -12,7 +12,8 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
-    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer
+    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer, \
+    GetInvitationSerializer
 
 
 # class RoleView(generics)
@@ -157,3 +158,17 @@ class ChildrenByParentId(generics.ListAPIView):
 class ConfirmInvitation(generics.UpdateAPIView):
     serializer_class = ConfirmInvitationSerializer
     queryset = Invitation.objects.all()
+
+
+class GetInviatationId(generics.ListAPIView):
+    serializer_class = GetInvitationSerializer
+    queryset = Invitation.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        childId = request.query_params["childId"]
+        parentId = request.query_params["parentId"]
+        if childId is not None and parentId is not None:
+            invitation = Invitation.objects.get(parent=parentId, child=childId)
+            serializer = GetInvitationSerializer(invitation)
+        else:
+            return GetInvitationSerializer({'error': 'invitation not found'})

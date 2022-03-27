@@ -164,3 +164,9 @@ class ConfirmInvitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invitation
         fields = "__all__"
+
+
+class GetInvitationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invitation
+        fields = 'id'
