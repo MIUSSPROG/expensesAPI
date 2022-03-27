@@ -12,7 +12,7 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
-    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer
+    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer
 
 
 # class RoleView(generics)
@@ -152,3 +152,8 @@ class ChildrenByParentId(generics.ListAPIView):
             return Response(serializer.data)
         else:
             return Response({'error': 'userId not found'})
+
+
+class ConfirmInvitation(generics.UpdateAPIView):
+    serializer_class = ConfirmInvitationSerializer
+    queryset = Invitation.objects.all()
