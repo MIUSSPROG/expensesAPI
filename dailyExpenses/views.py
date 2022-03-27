@@ -165,11 +165,12 @@ class GetInviatationId(generics.ListAPIView):
     queryset = Invitation.objects.all()
 
     def get(self, request, *args, **kwargs):
-        childId = request.query_params["childId"]
-        parentId = request.query_params["parentId"]
-        if childId is not None and parentId is not None:
-            invitation = Invitation.objects.get(parent=parentId, child=childId)
-            serializer = GetInvitationSerializer(invitation)
-            return Response(serializer.data)
-        else:
-            return GetInvitationSerializer({'error': 'invitation not found'})
+        try:
+            childId = request.query_params["childId"]
+            parentId = request.query_params["parentId"]
+            if childId is not None and parentId is not None:
+                invitation = Invitation.objects.get(parent=parentId, child=childId)
+                serializer = GetInvitationSerializer(invitation)
+                return Response(serializer.data)
+        except Exception:
+            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
