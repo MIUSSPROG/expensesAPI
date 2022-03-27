@@ -170,5 +170,6 @@ class GetInviatationId(generics.ListAPIView):
         if childId is not None and parentId is not None:
             invitation = Invitation.objects.get(parent=parentId, child=childId)
             serializer = GetInvitationSerializer(invitation)
+            return Response(serializer.data)
         else:
             return GetInvitationSerializer({'error': 'invitation not found'})
