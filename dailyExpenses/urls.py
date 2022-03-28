@@ -21,6 +21,7 @@ urlpatterns = [
     path('category', views.CategoryCreateView.as_view()),
     path('categories', views.CategoryListView.as_view()),
     path('send_invitation', views.SendInvitationCreateView.as_view()),
+    path('send_invitation_2', views.SendInvitation2UpdateView.as_view()),
     path('children_by_parentId', views.ChildrenByParentId.as_view()),
     path('confirm_invitation/<int:pk>', views.ConfirmInvitation.as_view()),
     path('get_invitation_id', views.GetInviatationId.as_view())

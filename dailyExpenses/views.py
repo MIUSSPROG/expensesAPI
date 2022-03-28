@@ -13,7 +13,7 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
     CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer, \
-    GetInvitationSerializer
+    GetInvitationSerializer, SendInvitation2Serializer
 
 
 # class RoleView(generics)
@@ -141,18 +141,25 @@ class SendInvitationCreateView(generics.CreateAPIView):
     serializer_class = SendInvitationSerializer
 
 
+class SendInvitation2UpdateView(generics.UpdateAPIView):
+    serializer_class = SendInvitation2Serializer
+    queryset = Child.objects.all()
+
+
 class ChildrenByParentId(generics.ListAPIView):
     serializer_class = ChildrenByParentIdSerializer
     queryset = Child.objects.all()
 
     def get(self, request, *args, **kwargs):
-        parentId = request.query_params["parentId"]
-        if parentId is not None:
-            children_invitations = Invitation.objects.filter(parent=parentId)
-            serializer = ChildrenByParentIdSerializer(children_invitations, many=True)
-            return Response(serializer.data)
-        else:
-            return Response({'error': 'userId not found'})
+        try:
+            parentId = request.query_params["parentId"]
+            if parentId is not None:
+                children_invitations = Invitation.objects.filter(parent=parentId)
+                serializer = ChildrenByParentIdSerializer(children_invitations, many=True)
+                return Response(serializer.data)
+        except Exception:
+            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class ConfirmInvitation(generics.UpdateAPIView):

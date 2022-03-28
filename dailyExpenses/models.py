@@ -19,6 +19,7 @@ class Child(models.Model):
     login = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=500)
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True, related_name="children", default=None)
+    confirmed = models.BooleanField(default=False)
     # role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
