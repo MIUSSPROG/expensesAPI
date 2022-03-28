@@ -20,12 +20,12 @@ urlpatterns = [
     path('plan/<int:pk>/confirm', views.PlanConfirmView.as_view()),
     path('category', views.CategoryCreateView.as_view()),
     path('categories', views.CategoryListView.as_view()),
-    path('send_invitation', views.SendInvitationCreateView.as_view()),
-    path('send_invitation_2/<int:pk>', views.SendInvitation2UpdateView.as_view()),
+    # path('send_invitation', views.SendInvitationCreateView.as_view()),
+    path('send_invitation/<int:pk>', views.SendInvitation2UpdateView.as_view()),
     path('children_by_parentId', views.ChildrenByParentId.as_view()),
-    path('confirm_invitation/<int:pk>', views.ConfirmInvitation.as_view()),
-    path('confirm_invitation_2/<int:pk>', views.ConfirmInvitation2.as_view()),
-    path('get_invitation_id', views.GetInviatationId.as_view())
+    # path('confirm_invitation/<int:pk>', views.ConfirmInvitation.as_view()),
+    path('confirm_invitation/<int:pk>', views.ConfirmInvitation2.as_view()),
+    # path('get_invitation_id', views.GetInviatationId.as_view())
     # path('parent/<int:pk>/children', views.)
     # path('role', views.RoleCreateView.as_view()),
     # path('role/all', views.RoleListView.as_view()),
