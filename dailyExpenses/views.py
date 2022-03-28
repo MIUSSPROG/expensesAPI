@@ -13,7 +13,7 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
     CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer, \
-    GetInvitationSerializer, SendInvitation2Serializer
+    GetInvitationSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer
 
 
 # class RoleView(generics)
@@ -161,10 +161,14 @@ class ChildrenByParentId(generics.ListAPIView):
             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class ConfirmInvitation(generics.UpdateAPIView):
     serializer_class = ConfirmInvitationSerializer
     queryset = Invitation.objects.all()
+
+
+class ConfirmInvitation2(generics.UpdateAPIView):
+    serializer_class = ConfirmInvitation2Serializer
+    queryset = Child.objects.all()
 
 
 class GetInviatationId(generics.ListAPIView):
