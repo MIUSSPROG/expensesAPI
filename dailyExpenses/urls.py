@@ -8,7 +8,6 @@ urlpatterns = [
     path("parent", views.ParentCreateView.as_view()),
     path('parent/delete/<int:pk>', views.ParentDeleteView.as_view()),
     path("save_parent_encoded/", views.SaveParentEncodedView.as_view()),
-    path("check_parent/", views.CheckParentView.as_view()),
     path("parents", views.ParentListView.as_view()),
     path("child", views.ChildCreateView.as_view()),
     path("child/<int:pk>/check", views.ChildCheckView.as_view()),
