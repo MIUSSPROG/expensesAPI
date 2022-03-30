@@ -42,7 +42,6 @@ class ParentListView(generics.ListAPIView):
     queryset = Parent.objects.all()
 
 
-
 class ChildDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Child.objects.all()
     serializer_class = ChildAuthSerializer
