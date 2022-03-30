@@ -180,11 +180,14 @@ class CheckInvitationView(generics.ListAPIView):
             parentId = request.query_params["parentId"]
             login = request.query_params["login"]
             if parentId is not None and login is not None:
-                child = Child.objects.get(login=login, parent=parentId)
-                serializer = CheckInvitationSerializer(child)
-                return Response(serializer.data)
+                try:
+                    child = Child.objects.get(login=login, parent=parentId)
+                    serializer = CheckInvitationSerializer(child)
+                    return Response(serializer.data)
+                except Exception:
+                    return Response({'error': "child doesn't exist"}, status=status.HTTP_400_BAD_REQUEST)
         except Exception:
-            return Response({'error': 'not found'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class GetInviatationId(generics.ListAPIView):
