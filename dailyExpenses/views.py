@@ -199,3 +199,21 @@ class GetInviatationId(generics.ListAPIView):
                 return Response(serializer.data)
         except Exception:
             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CheckParentView(generics.ListAPIView):
+    serializer_class = ParentListSerializer
+    queryset = Parent.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        try:
+            login = request.query_params["login"]
+            if login is not None:
+                try:
+                    parent = Parent.objects.get(login=login)
+                    serializer = ParentListSerializer(parent)
+                    return Response(serializer.data)
+                except Exception:
+                    return Response({'error': "not found"}, status=status.HTTP_204_NO_CONTENT)
+        except Exception:
+            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)

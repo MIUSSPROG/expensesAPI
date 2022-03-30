@@ -26,7 +26,8 @@ urlpatterns = [
     path('children_by_parentId', views.ChildrenByParentId.as_view()),
     # path('confirm_invitation/<int:pk>', views.ConfirmInvitation.as_view()),
     path('confirm_invitation/<int:pk>', views.ConfirmInvitation2.as_view()),
-    path('check_invitation', views.CheckInvitationView.as_view())
+    path('check_invitation', views.CheckInvitationView.as_view()),
+    path('check_parent', views.CheckParentView.as_view())
     # path('get_invitation_id', views.GetInviatationId.as_view())
     # path('parent/<int:pk>/children', views.)
     # path('role', views.RoleCreateView.as_view()),
