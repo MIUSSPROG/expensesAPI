@@ -214,6 +214,6 @@ class CheckParentView(generics.ListAPIView):
                     serializer = ParentListSerializer(parent)
                     return Response(serializer.data)
                 except Exception:
-                    return Response({'error': "not found"}, status=status.HTTP_204_NO_CONTENT)
+                    return Response({'error': "not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception:
             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
