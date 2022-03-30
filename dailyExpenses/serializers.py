@@ -182,3 +182,9 @@ class GetInvitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invitation
         fields = "__all__"
+
+
+class CheckInvitationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Child
+        fields = "__all__"
