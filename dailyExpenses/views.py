@@ -42,15 +42,6 @@ class ParentListView(generics.ListAPIView):
     queryset = Parent.objects.all()
 
 
-# class ChildListCreateView(ListCreateAPIView):
-#     serializer_class = ChildAuthSerializer
-#     queryset = Child.objects.all()
-#     permission_classes = [IsAuthenticated]
-#
-#     def perform_create(self, serializer):
-#         user = self.request.user
-#         serializer.save(user=user)
-
 
 class ChildDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Child.objects.all()
