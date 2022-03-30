@@ -6,6 +6,7 @@ urlpatterns = [
     # path("child", views.ChildListCreateView.as_view()),
     path('child_encoded/<int:pk>', views.ChildDetailView.as_view()),
     path("parent", views.ParentCreateView.as_view()),
+    path('parent/delete/<int:pk>', views.ParentDeleteView.as_view()),
     path("save_parent_encoded/", views.SaveParentEncodedView.as_view()),
     path("check_parent/", views.CheckParentView.as_view()),
     path("parents", views.ParentListView.as_view()),

@@ -32,6 +32,11 @@ class ParentCreateView(generics.CreateAPIView):
     serializer_class = ParentCreateSerializer
 
 
+class ParentDeleteView(generics.DestroyAPIView):
+    serializer_class = ParentListSerializer
+    queryset = Parent.objects.all()
+
+
 class ParentListView(generics.ListAPIView):
     serializer_class = ParentListSerializer
     queryset = Parent.objects.all()

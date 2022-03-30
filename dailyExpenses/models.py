@@ -8,7 +8,7 @@ from django.db import models
 
 class Parent(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="parent")
-    login = models.CharField(max_length=30)
+    login = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=500)
     # role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
