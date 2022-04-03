@@ -217,3 +217,21 @@ class CheckParentView(generics.ListAPIView):
                     return Response({}, status=status.HTTP_404_NOT_FOUND)
         except Exception:
             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CheckChildParentView(generics.ListAPIView):
+    serializer_class = ChildListSerializer
+    queryset = Child.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        try:
+            login = request.query_params["login"]
+            if login is not None:
+                try:
+                    child = Child.objects.get(login=login)
+                    serializer = ChildListSerializer(child)
+                    return Response(serializer.data)
+                except Exception:
+                    return Response({}, status=status.HTTP_404_NOT_FOUND)
+        except Exception:
+            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
