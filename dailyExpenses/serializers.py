@@ -169,7 +169,7 @@ class ChildrenByParentIdSerializer(serializers.ModelSerializer):
 class ChildParentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
-        fields = ('parent_login', )
+        fields = ('parent_id', 'parent_login')
 
     parent_login = serializers.SerializerMethodField('get_parent_login')
 
