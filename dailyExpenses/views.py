@@ -230,8 +230,11 @@ class CheckChildParentView(generics.ListAPIView):
             if login is not None:
                 try:
                     child = Child.objects.get(login=login)
-                    serializer = ChildParentListSerializer(child)
-                    return Response(serializer.data)
+                    if child.parent is None:
+                        return Response({'parent_id': None, 'parent_login': '', 'confirmed': False})
+                    else:
+                        serializer = ChildParentListSerializer(child)
+                        return Response(serializer.data)
                 except Exception:
                     return Response({}, status=status.HTTP_404_NOT_FOUND)
         except Exception:
