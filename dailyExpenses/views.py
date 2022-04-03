@@ -13,7 +13,8 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
     CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer, \
-    GetInvitationSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer
+    GetInvitationSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer, \
+    ChildParentListSerializer
 
 
 # class RoleView(generics)
@@ -220,7 +221,7 @@ class CheckParentView(generics.ListAPIView):
 
 
 class CheckChildParentView(generics.ListAPIView):
-    serializer_class = ChildListSerializer
+    serializer_class = ChildParentListSerializer
     queryset = Child.objects.all()
 
     def get(self, request, *args, **kwargs):
@@ -229,7 +230,7 @@ class CheckChildParentView(generics.ListAPIView):
             if login is not None:
                 try:
                     child = Child.objects.get(login=login)
-                    serializer = ChildListSerializer(child)
+                    serializer = ChildParentListSerializer(child)
                     return Response(serializer.data)
                 except Exception:
                     return Response({}, status=status.HTTP_404_NOT_FOUND)

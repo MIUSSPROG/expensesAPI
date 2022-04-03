@@ -166,6 +166,17 @@ class ChildrenByParentIdSerializer(serializers.ModelSerializer):
         return obj.child.login
 
 
+class ChildParentListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Child
+        fields = ('parent_login')
+
+    parent_login = serializers.SerializerMethodField('get_parent_login')
+
+    def get_parent_login(self, obj):
+        return obj.parent.login
+
+
 class ConfirmInvitationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invitation
