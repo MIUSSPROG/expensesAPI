@@ -7,13 +7,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from dailyExpenses.license import IsOwnerProfileOrReadOnly
-from dailyExpenses.models import Parent, Child, Category, Plan, Invitation
+from dailyExpenses.models import Parent, Child, Category, Plan
 from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializer, ChildCreateSerializer, \
     ChildListSerializer, ChildrenDetailSerializer, PlanCreateSerializer, CategoryCreateSerializer, \
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
-    CheckParentSerializer, SendInvitationSerializer, ChildrenByParentIdSerializer, ConfirmInvitationSerializer, \
-    GetInvitationSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer, \
+    CheckParentSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer, \
     ChildParentListSerializer
 
 
@@ -133,8 +132,8 @@ class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
 
 
-class SendInvitationCreateView(generics.CreateAPIView):
-    serializer_class = SendInvitationSerializer
+# class SendInvitationCreateView(generics.CreateAPIView):
+#     serializer_class = SendInvitationSerializer
 
 
 class SendInvitation2UpdateView(generics.UpdateAPIView):
@@ -142,24 +141,24 @@ class SendInvitation2UpdateView(generics.UpdateAPIView):
     queryset = Child.objects.all()
 
 
-class ChildrenByParentId(generics.ListAPIView):
-    serializer_class = ChildrenByParentIdSerializer
-    queryset = Child.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        try:
-            parentId = request.query_params["parentId"]
-            if parentId is not None:
-                children_invitations = Invitation.objects.filter(parent=parentId)
-                serializer = ChildrenByParentIdSerializer(children_invitations, many=True)
-                return Response(serializer.data)
-        except Exception:
-            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ConfirmInvitation(generics.UpdateAPIView):
-    serializer_class = ConfirmInvitationSerializer
-    queryset = Invitation.objects.all()
+# class ChildrenByParentId(generics.ListAPIView):
+#     serializer_class = ChildrenByParentIdSerializer
+#     queryset = Child.objects.all()
+#
+#     def get(self, request, *args, **kwargs):
+#         try:
+#             parentId = request.query_params["parentId"]
+#             if parentId is not None:
+#                 children_invitations = Invitation.objects.filter(parent=parentId)
+#                 serializer = ChildrenByParentIdSerializer(children_invitations, many=True)
+#                 return Response(serializer.data)
+#         except Exception:
+#             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
+#
+#
+# class ConfirmInvitation(generics.UpdateAPIView):
+#     serializer_class = ConfirmInvitationSerializer
+#     queryset = Invitation.objects.all()
 
 
 class ConfirmInvitation2(generics.UpdateAPIView):
@@ -186,20 +185,20 @@ class CheckInvitationView(generics.ListAPIView):
             return Response({'error': 'not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
-class GetInviatationId(generics.ListAPIView):
-    serializer_class = GetInvitationSerializer
-    queryset = Invitation.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        try:
-            childId = request.query_params["childId"]
-            parentId = request.query_params["parentId"]
-            if childId is not None and parentId is not None:
-                invitation = Invitation.objects.get(parent=parentId, child=childId)
-                serializer = GetInvitationSerializer(invitation)
-                return Response(serializer.data)
-        except Exception:
-            return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
+# class GetInviatationId(generics.ListAPIView):
+#     serializer_class = GetInvitationSerializer
+#     queryset = Invitation.objects.all()
+#
+#     def get(self, request, *args, **kwargs):
+#         try:
+#             childId = request.query_params["childId"]
+#             parentId = request.query_params["parentId"]
+#             if childId is not None and parentId is not None:
+#                 invitation = Invitation.objects.get(parent=parentId, child=childId)
+#                 serializer = GetInvitationSerializer(invitation)
+#                 return Response(serializer.data)
+#         except Exception:
+#             return Response({'error': "incorrect params"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CheckParentView(generics.ListAPIView):

@@ -3,7 +3,7 @@ import hashlib
 from django.contrib.auth.hashers import make_password, PBKDF2PasswordHasher
 from rest_framework import serializers
 
-from dailyExpenses.models import Parent, Child, Plan, Category, Invitation
+from dailyExpenses.models import Parent, Child, Plan, Category
 
 
 # class RoleCreateSerializer(serializers.ModelSerializer):
@@ -105,10 +105,10 @@ class SaveChildEncodedSerializer(serializers.ModelSerializer):
         return child
 
 
-class SendInvitationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Invitation
-        fields = "__all__"
+# class SendInvitationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Invitation
+#         fields = "__all__"
 
 
 class SendInvitation2Serializer(serializers.ModelSerializer):
@@ -155,15 +155,15 @@ class CategoryListSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ChildrenByParentIdSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Invitation
-        fields = ('child_id', 'child_login', 'confirm')
-
-    child_login = serializers.SerializerMethodField('get_child_login')
-
-    def get_child_login(self, obj):
-        return obj.child.login
+# class ChildrenByParentIdSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Invitation
+#         fields = ('child_id', 'child_login', 'confirm')
+#
+#     child_login = serializers.SerializerMethodField('get_child_login')
+#
+#     def get_child_login(self, obj):
+#         return obj.child.login
 
 
 class ChildParentListSerializer(serializers.ModelSerializer):
@@ -177,10 +177,10 @@ class ChildParentListSerializer(serializers.ModelSerializer):
         return obj.parent.login
 
 
-class ConfirmInvitationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Invitation
-        fields = "__all__"
+# class ConfirmInvitationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Invitation
+#         fields = "__all__"
 
 
 class ConfirmInvitation2Serializer(serializers.ModelSerializer):
@@ -189,10 +189,10 @@ class ConfirmInvitation2Serializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class GetInvitationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Invitation
-        fields = "__all__"
+# class GetInvitationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Invitation
+#         fields = "__all__"
 
 
 class CheckInvitationSerializer(serializers.ModelSerializer):

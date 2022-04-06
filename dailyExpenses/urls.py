@@ -22,7 +22,7 @@ urlpatterns = [
     path('categories', views.CategoryListView.as_view()),
     # path('send_invitation', views.SendInvitationCreateView.as_view()),
     path('send_invitation/<int:pk>', views.SendInvitation2UpdateView.as_view()),
-    path('children_by_parentId', views.ChildrenByParentId.as_view()),
+    # path('children_by_parentId', views.ChildrenByParentId.as_view()),
     # path('confirm_invitation/<int:pk>', views.ConfirmInvitation.as_view()),
     path('confirm_invitation/<int:pk>', views.ConfirmInvitation2.as_view()),
     path('check_invitation', views.CheckInvitationView.as_view()),

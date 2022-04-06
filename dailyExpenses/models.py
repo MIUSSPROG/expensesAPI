@@ -23,13 +23,13 @@ class Child(models.Model):
     # role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
 
-class Invitation(models.Model):
-    child = models.ForeignKey(Child, on_delete=models.CASCADE, related_name='child_invitations')
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
-    confirm = models.BooleanField(default=False)
-
-    class Meta:
-        unique_together = ('child', 'parent')
+# class Invitation(models.Model):
+#     child = models.ForeignKey(Child, on_delete=models.CASCADE, related_name='child_invitations')
+#     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+#     confirm = models.BooleanField(default=False)
+#
+#     class Meta:
+#         unique_together = ('child', 'parent')
 
 
 class Category(models.Model):
