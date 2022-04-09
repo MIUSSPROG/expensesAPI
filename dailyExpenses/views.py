@@ -121,7 +121,7 @@ class PlanConfirmView(generics.UpdateAPIView):
 
 class PlanListCreateView(generics.CreateAPIView):
     queryset = Plan.objects.all()
-    serializer_class = PlanListCreateSerializer(queryset, many=True)
+    serializer_class = PlanListCreateSerializer
 
 
 class PlanCreateView(generics.CreateAPIView):
