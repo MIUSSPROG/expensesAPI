@@ -13,7 +13,7 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
     CheckParentSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer, \
-    ChildParentListSerializer
+    ChildParentListSerializer, PlanListCreateSerializer
 
 
 # class RoleView(generics)
@@ -117,6 +117,11 @@ class PlanChildrenDetailView(generics.RetrieveAPIView):
 class PlanConfirmView(generics.UpdateAPIView):
     serializer_class = PlanConfirmUpdateSerializer
     queryset = Plan.objects.all()
+
+
+class PlanListCreateView(generics.CreateAPIView):
+    queryset = Plan.objects.all()
+    serializer_class = PlanListCreateSerializer(queryset, many=True)
 
 
 class PlanCreateView(generics.CreateAPIView):

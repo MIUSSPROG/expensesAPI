@@ -19,6 +19,7 @@ urlpatterns = [
     path('plan', views.PlanCreateView.as_view()),
     # path('plan/children/<int:pk>', views.PlanChildrenDetailView.as_view()),
     path('plan/<int:pk>/confirm', views.PlanConfirmView.as_view()),
+    path('plan/list', views.PlanListCreateView.as_view()),
     path('category', views.CategoryCreateView.as_view()),
     path('categories', views.CategoryListView.as_view()),
     # path('send_invitation', views.SendInvitationCreateView.as_view()),

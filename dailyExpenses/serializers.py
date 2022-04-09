@@ -148,6 +148,12 @@ class PlanConfirmUpdateSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class PlanListCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plan
+        fields = "__all__"
+
+
 class CategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
