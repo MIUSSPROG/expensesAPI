@@ -43,5 +43,5 @@ class Plan(models.Model):
     # date = models.CharField(max_length=50)
     date = models.BigIntegerField()
     image = models.ImageField(null=True)
-    confirm = models.BooleanField(default=False)
+    confirm = models.BooleanField(default=None, null=True)
     child = models.ForeignKey(Child, on_delete=models.CASCADE, related_name='plans')
