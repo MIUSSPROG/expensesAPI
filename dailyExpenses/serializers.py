@@ -56,6 +56,12 @@ class ChildrenDetailSerializer(serializers.ModelSerializer):
         fields = ('login', 'children')
 
 
+class PlanDestroySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plan
+        fields = "__all__"
+
+
 # ('name', 'category_name', 'price', 'date', 'image', 'confirm')
 class PlanCreateSerializer(serializers.ModelSerializer):
     class Meta:

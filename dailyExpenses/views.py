@@ -13,7 +13,7 @@ from dailyExpenses.serializers import ParentCreateSerializer, ParentListSerializ
     CategoryListSerializer, PlanChildrenDetailSerializer, PlanConfirmUpdateSerializer, ChildCheckDetailSerializer, \
     ChildAuthSerializer, CheckChildSerializer, SaveChildEncodedSerializer, SaveParentEncodedSerializer, \
     CheckParentSerializer, SendInvitation2Serializer, ConfirmInvitation2Serializer, CheckInvitationSerializer, \
-    ChildParentListSerializer, PlanListCreateSerializer
+    ChildParentListSerializer, PlanListCreateSerializer, PlanDestroySerializer
 
 
 # class RoleView(generics)
@@ -131,6 +131,11 @@ class PlanListCreateView(generics.CreateAPIView):
             # headers = headers
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PlanDestroyView(generics.DestroyAPIView):
+    serializer_class = PlanDestroySerializer
+    queryset = Plan.objects.all()
 
 
 class PlanCreateView(generics.CreateAPIView):
