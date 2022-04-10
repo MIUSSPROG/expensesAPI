@@ -56,10 +56,11 @@ class ChildrenDetailSerializer(serializers.ModelSerializer):
         fields = ('login', 'children')
 
 
+# ('name', 'category_name', 'price', 'date', 'image', 'confirm')
 class PlanCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
-        fields = ('name', 'category_name', 'price', 'date', 'image', 'confirm')
+        fields = "__all__"
 
     category_name = serializers.SerializerMethodField('get_category_name')
 
