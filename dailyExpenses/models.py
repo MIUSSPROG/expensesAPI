@@ -31,7 +31,7 @@ class Child(models.Model):
 #     class Meta:
 #         unique_together = ('child', 'parent')
 
-
+# some changes
 class Category(models.Model):
     name = models.CharField(max_length=30)
 
