@@ -41,7 +41,7 @@ class Plan(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="plans")
     price = models.FloatField()
     # date = models.CharField(max_length=50)
-    date = models.BigIntegerField() # unix time
+    date = models.BigIntegerField()
     image = models.ImageField(null=True)
     confirm = models.BooleanField(default=None, null=True)
     child = models.ForeignKey(Child, on_delete=models.CASCADE, related_name='plans')
